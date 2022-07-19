@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{dish.title}}</h1>
+<br>
+<h3>Ingredient List</h3>
+<ul>
+    {% for ingredient in dish.extendedIngredients %}
+    <li>{{ingredient.originalString}}</li>
+    {% endfor %}
+</ul>
+<h3>Instructions</h3>
+<ol>
+    {% for step in steps %}
+    <li>{{step}}</li>
+    {% endfor %}
+</ol>
+
+<h3>Summary</h3>
+<p>{{dish.summary|striptags}}</p>
+
+{% endblock %}

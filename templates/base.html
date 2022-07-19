@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />  
+  <title>Chef Tree</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://unpkg.com/popper"></script>
+  <script src="https://unpkg.com/bootstrap"></script>
+
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="shortcut icon" href="/static/images/favicon.ico">
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-right navbar-dark nav-block navbar-expand-lg">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">
+       
+        <span class="brand navlink-brand">Chef Tree</span></a>
+         </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">        
+    <ul class="nav navbar-dark navbar-nav">
+      <li><a href="/" class="navlinks m-2">
+          Search</a></li>
+  <li><a href="/searchbyingredients" class="navlinks m-2">
+      Search By Ingredients</a></li>
+        {% if g.user %}
+        <li><a class="navlinks m-2" href="/user">Favorites</a></li>
+        {% endif %}
+      {% if not g.user %}
+      <li><a class="navlinks m-2" href="/register">Sign Up</a></li>
+      <li><a class="navlinks m-2" href="/login">Log in</a></li>
+      {% else %}
+      <li>
+        <a class="navlinks m-2" href="/user">{{g.user.username}}
+        </a>
+      </li>
+      <li><a class="navlinks m-2" href="/logout">Log out</a></li>
+      {% endif %}
+</div>
+</nav>
+
+<div class="container-fluid contents">
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+  <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endfor %}
+
+  {% block content %}
+  {% endblock %}
+
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
